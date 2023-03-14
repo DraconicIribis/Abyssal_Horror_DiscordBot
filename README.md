@@ -8,3 +8,5 @@ Discord has been updated with multiple "breaking changes" since I last worked on
  - Friends have updated it a little bit late 2020 and early 2021
 
 Lots of credit goes to multiple discord users and friends that have greatly helped me on this project. Thank you for your help in this project.
+
+View the original full version here: https://replit.com/@cortie88/Abyssal-Horror-Discord-Bot
