@@ -21,7 +21,7 @@ print('-------------------------------------------')
 
 prefix = '='
 minescout_boards = []
-TOKEN = 'NjIxNTY2OTM2MTgyMDMwMzQ4.XXnOsA.Uo0ksBKrYDoo5VrVdj_1Fgis4vM'
+TOKEN = 'NEEDS TO BE RESET'
 client = Bot(command_prefix = prefix)
 client.remove_command('help')
 
