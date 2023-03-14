@@ -15,3 +15,5 @@ The bot provides:
  - An XP tracking service, with individual levels and roles automatically given based on XP
  - Multiple games and entertainment commands
  - Comedic commands that spruce up a discord server
+
+Bot token has been removed from all code.
