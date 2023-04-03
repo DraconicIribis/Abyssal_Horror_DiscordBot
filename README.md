@@ -1,6 +1,5 @@
 # Abyssal_Horror_DiscordBot
-# A Discord bot that was started in early 2017 to test out Python. Worked on many years in the Repl.it web-based IDE. Now deprecated.
-
+# A Discord bot that was started in early 2017 to test out Python. Worked on many years in the Repl.it web-based IDE.
 NOTE:
 Discord has been updated with multiple "breaking changes" since I last estensively worked on this bot, which run deep in the code. I am currently updating the code to get it back to working condition.
 
