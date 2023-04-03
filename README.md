@@ -3,6 +3,7 @@
 
 NOTE:
 Discord has been updated with multiple "breaking changes" since I last estensively worked on this bot, which run deep in the code. I am currently updating the code to get it back to working condition.
+
 CURRENT STATUS:
 - Able to run, but no commands execute.
 - Needs to fix status changing loop, as the previous process was deprecated.
