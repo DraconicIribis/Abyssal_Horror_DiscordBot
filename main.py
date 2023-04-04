@@ -1,4 +1,5 @@
 import os
+
 os.system("python -m pip install -r requirements.txt")
 
 import discord
@@ -16,6 +17,12 @@ import add_role
 from add_role import xp_roles
 from itertools import cycle
 
+intents = discord.Intents.all()
+intents.members = True
+intents.typing = True
+intents.presences = True
+intents.message_content = True
+
 print('-------------------------------------------')
 print('I have returned.')
 print(discord.__version__)
@@ -23,8 +30,8 @@ print('-------------------------------------------')
 
 prefix = '='
 minescout_boards = []
-TOKEN = 'PLACE TOKEN HERE' #PUT THE CORRECT TOKEN HERE OR THE BOT WILL NOT RUN
-client = Bot(command_prefix=prefix, intents=discord.Intents.default())
+TOKEN = 'NjIxNTY2OTM2MTgyMDMwMzQ4.GamAbp.v82awS3FmOHf-prsPTJyE7h55YOnEkOJ3e38WI'
+client = Bot(command_prefix=prefix, intents=discord.Intents.all())
 client.remove_command('help')
 
 activities = [
@@ -116,7 +123,7 @@ async def minescouter(ctx):
 			break
 		else:
 			round_ += 1
-	points_yon = os.path.isfile('{}.txt'.format(ctx.author))
+	points_yon = os.path.isfile('{}.txt'.format(ctx.author.id))
 	if points_yon:
 		with open('{}.txt'.format(ctx.author), 'r') as new:
 			mines_ = abs(steps - 10)
@@ -276,7 +283,7 @@ async def russian_roulette(ctx):
 	elif quit == False and win == True:
 		await ctx.send('Game over, you survived! You survived {} shots, '.
 		               format(survived_s) + ctx.author.mention)
-	points_tof = os.path.isfile('{}.txt'.format(ctx.author))
+	points_tof = os.path.isfile('{}.txt'.format(ctx.author.id))
 	points_det = len(all_slots) / bullets
 	if quit == False and points_tof and points_det > 2:
 		with open('{}.txt'.format(ctx.author), 'r') as add_points:
@@ -723,7 +730,7 @@ async def hells_maw(ctx):
 
 @client.command(name='start')
 async def point_tracker_start(ctx):
-	start_tof = os.path.isfile("{}.txt".format(ctx.author))
+	start_tof = os.path.isfile("{}.txt".format(ctx.author.id))
 	role = discord.utils.get(ctx.guild.roles, id=621564121573228545)
 	if role not in ctx.author.roles:
 		await ctx.author.add_roles(role)
@@ -736,17 +743,17 @@ async def point_tracker_start(ctx):
 		    '''You are initiated into the xp tracker. You may now level up and gain new roles through my lethal games, events (admins may host), and other commands I may have lurking about. I will gift you one point to begin, because my master commands so, not by my own will.
 If you wish to see how you may gain xp, use =help to see all the commands that may give you xp.'''
 		)
-		with open("{}.txt".format(ctx.author), 'x') as new_points_file:
+		with open("{}.txt".format(ctx.author.id), 'x') as new_points_file:
 			new_points_file.write('1')
 
 
 @client.command(name='level')
 async def level_show(ctx):
-	cando = os.path.isfile('{}.txt'.format(ctx.author))
+	cando = os.path.isfile('{}.txt'.format(ctx.author.id))
 	if cando:
 		embed = discord.Embed(colour=16107290)
 		embed.set_author(name="{}'s Level".format(ctx.author))
-		embed.set_thumbnail(url=ctx.author.avatar_url)
+		embed.set_thumbnail(url=ctx.author.avatar)
 		innocents = discord.utils.get(ctx.guild.roles, id=621564121573228545)
 		followers = discord.utils.get(ctx.guild.roles, id=621565009389944833)
 		seekers = discord.utils.get(ctx.guild.roles, id=631245434421248011)
@@ -851,7 +858,7 @@ async def give_xp(
 		return message.author == ctx.author and message.channel == msg.channel
 
 	role = discord.utils.get(ctx.author.roles, id=621553342245765121)
-	cont = os.path.isfile('{}.txt'.format(str(member)))
+	cont = os.path.isfile('{}.txt'.format(str(member.id)))
 	if role in ctx.author.roles and cont:
 		msg = await ctx.send('How much xp am I to give?')
 		msg = await client.wait_for('message', check=check)
@@ -890,7 +897,7 @@ async def guess_who(ctx):
 	everyone = discord.utils.get(ctx.guild.roles, id=621551384415961090)
 	if user_role == everyone:
 		user_role = 'Everyone'
-	cont = os.path.isfile('{}.txt'.format(choice))
+	cont = os.path.isfile('{}.txt'.format(choice.id))
 	if cont:
 		with open('{}.txt'.format(choice), 'r') as user_xp:
 			hints = [
@@ -912,11 +919,11 @@ async def guess_who(ctx):
 	win = False
 	rounds = 0
 	while restart:
-		msg = await ctx.send('Guess anyone in this server.')
+		msg = await ctx.send('Guess anyone in this server (display name only).')
 		msg = await client.wait_for('message', check=check)
 		guess = msg.content
 		try:
-			if guess != str(choice):
+			if guess != str(choice.display_name):
 				hint = random.choice(hints)
 				hints.remove(hint)
 				await ctx.send('Hint: ' + hint)
@@ -932,7 +939,7 @@ async def guess_who(ctx):
 			win = False
 			restart = False
 			continue
-	cont = os.path.isfile('{}.txt'.format(ctx.author))
+	cont = os.path.isfile('{}.txt'.format(ctx.author.id))
 	if win == True and cont:
 		with open('{}.txt'.format(ctx.author), 'r') as xp:
 			if rounds == 0:
@@ -966,7 +973,7 @@ async def game_trivia(ctx):
 		guess = msg.content.lower()
 		if guess == answer:
 			await ctx.send('That is correct!')
-			points_tof = os.path.isfile('{}.txt'.format(ctx.author))
+			points_tof = os.path.isfile('{}.txt'.format(ctx.author.id))
 			if points_tof:
 				with open('{}.txt'.format(ctx.author), 'r') as xp:
 					new_points_total = int(float(xp.read())) + 15
@@ -1129,17 +1136,17 @@ async def on_member_join(member):
 	    value=
 	    f'Welcome {member.mention}!!!\nYou have chosen well in joining {channel.guild.name}. {welcomeMessage}'
 	)
-	embed.set_thumbnail(url=member.avatar_url)
+	embed.set_thumbnail(url=member.avatar)
 	await channel.send(embed=embed)
 
 
 @client.command(name='ulevel')
 async def otherUserLevel(ctx, *, member: discord.Member):
-	cando = os.path.isfile('{}.txt'.format(member))
+	cando = os.path.isfile('{}.txt'.format(member.id))
 	if cando:
 		embed = discord.Embed(colour=16107290)
 		embed.set_author(name="{}'s Level".format(member))
-		embed.set_thumbnail(url=member.avatar_url)
+		embed.set_thumbnail(url=member.avatar)
 		innocents = discord.utils.get(ctx.guild.roles, id=621564121573228545)
 		followers = discord.utils.get(ctx.guild.roles, id=621565009389944833)
 		seekers = discord.utils.get(ctx.guild.roles, id=631245434421248011)
