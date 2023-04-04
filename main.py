@@ -30,7 +30,7 @@ print('-------------------------------------------')
 
 prefix = '='
 minescout_boards = []
-TOKEN = 'PUT TOKEN HERE'
+TOKEN = 'NjIxNTY2OTM2MTgyMDMwMzQ4.G0HqeK.3pdpR84hkr--bdMfU8JPgRSvmwN5_tXOsvHzpM'
 client = Bot(command_prefix=prefix, intents=discord.Intents.all())
 client.remove_command('help')
 
@@ -544,19 +544,19 @@ async def secret(ctx):
 	    'https://giphy.com/gifs/gifvif-sword-in-coin-and-secret-door-LnLZ2IqWNiOBPrSyED'
 	)
 	with open('Secret.txt', 'r') as secret_yon:
-		if str(ctx.author) not in secret_yon.read():
-			with open('{}.txt'.format(ctx.author), 'r') as read_for_points:
+		if str(ctx.author.id) not in secret_yon.read():
+			with open('{}.txt'.format(ctx.author.id), 'r') as read_for_points:
 				added = random.randint(30, 80)
 				new_points_total = int(float(read_for_points.read())) + added
 				points_output = str(added)
-				with open('{}.txt'.format(ctx.author), 'w') as add_points:
+				with open('{}.txt'.format(ctx.author.id), 'w') as add_points:
 					add_points.write(str(new_points_total))
 				await ctx.author.send(
 				    'And here is a gift (very rare from me, do not take it lightly) from me: {} xp!'
 				    .format(points_output))
 				with open('Secret.txt', 'a') as secret_:
 					secret_.write(str('''
-{}'''.format(ctx.author)))
+{}'''.format(ctx.author.id)))
 		else:
 			await ctx.author.send(
 			    'You have already found this secret before. Please do not try to exploit my gift giving, I told you I rarely give gifts...'
