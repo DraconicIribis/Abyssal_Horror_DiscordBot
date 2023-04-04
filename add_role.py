@@ -2,8 +2,8 @@ import os
 from os import path
 import discord
 async def xp_roles(ctx):
-  can_do = os.path.isfile('{}.txt'.format(ctx.author))
-  with open('{}.txt'.format(ctx.author),'r') as xp_total:
+  can_do = os.path.isfile('{}.txt'.format(ctx.author.id))
+  with open('{}.txt'.format(ctx.author.id),'r') as xp_total:
     xp = int(float(xp_total.read()))
     role = discord.utils.get(ctx.author.guild.roles, id=621565009389944833)
     if role not in ctx.author.roles and can_do and xp > 100:
