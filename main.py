@@ -30,7 +30,7 @@ print('-------------------------------------------')
 
 prefix = '='
 minescout_boards = []
-TOKEN = 'PUT TOKEN HERE'
+TOKEN = 'NjIxNTY2OTM2MTgyMDMwMzQ4.GlP08Q.Kgl-WYJFoI7Bos0VQOeddZL47vc6kYjuLy41jQ'
 client = Bot(command_prefix=prefix, intents=discord.Intents.all())
 client.remove_command('help')
 
@@ -762,7 +762,7 @@ async def level_show(ctx):
 		children = discord.utils.get(ctx.guild.roles, id=631247287196319764)
 		lord = discord.utils.get(ctx.guild.roles, id=631540090727956500)
 		agents = discord.utils.get(ctx.guild.roles, id=621564341409284116)
-		with open('{}.txt'.format(ctx.author), 'r') as xp:
+		with open('{}.txt'.format(ctx.author.id), 'r') as xp:
 			if innocents in ctx.author.roles and followers not in ctx.author.roles:
 				embed.set_image(
 				    url=
@@ -873,9 +873,9 @@ async def give_xp(
 				msg = await ctx.send('How much xp am I to give?')
 				msg = await client.wait_for('message', check=check)
 				xp = msg.content
-		with open('{}.txt'.format(member), 'r') as total:
+		with open('{}.txt'.format(member.id), 'r') as total:
 			new_points_total = int(float(total.read())) + gift
-			with open('{}.txt'.format(member), 'w') as new_total:
+			with open('{}.txt'.format(member.id), 'w') as new_total:
 				new_total.write(str(new_points_total))
 			await ctx.send('{}, {} gifted you {} xp.'.format(
 			    member.mention, ctx.author.mention, xp))
@@ -919,7 +919,8 @@ async def guess_who(ctx):
 	win = False
 	rounds = 0
 	while restart:
-		msg = await ctx.send('Guess anyone in this server (display name only).')
+		msg = await ctx.send('Guess anyone in this server (display name only).'
+		                     )
 		msg = await client.wait_for('message', check=check)
 		guess = msg.content
 		try:
@@ -1081,7 +1082,7 @@ Dark Souls 3
 
 @client.command(name='ranks')
 async def see_levels(ctx):
-	embed = discord.Embed(name='Levels List', colour=16717109)
+	embed = discord.Embed(title='Levels List', colour=16717109)
 	embed.add_field(name='Levels List',
 	                value='''———————————————————————————————————
 **Innocents**
@@ -1155,7 +1156,7 @@ async def otherUserLevel(ctx, *, member: discord.Member):
 		children = discord.utils.get(ctx.guild.roles, id=631247287196319764)
 		lord = discord.utils.get(ctx.guild.roles, id=631540090727956500)
 		agents = discord.utils.get(ctx.guild.roles, id=621564341409284116)
-		with open('{}.txt'.format(member), 'r') as xp:
+		with open('{}.txt'.format(member.id), 'r') as xp:
 			if innocents in member.roles and followers not in member.roles:
 				embed.set_image(
 				    url=
