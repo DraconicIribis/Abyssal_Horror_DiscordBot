@@ -30,7 +30,7 @@ print('-------------------------------------------')
 
 prefix = '='
 minescout_boards = []
-TOKEN = 'NjIxNTY2OTM2MTgyMDMwMzQ4.GlP08Q.Kgl-WYJFoI7Bos0VQOeddZL47vc6kYjuLy41jQ'
+TOKEN = 'PUT TOKEN HERE'
 client = Bot(command_prefix=prefix, intents=discord.Intents.all())
 client.remove_command('help')
 
