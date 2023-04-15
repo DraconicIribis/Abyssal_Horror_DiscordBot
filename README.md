@@ -1,11 +1,7 @@
 # Abyssal_Horror_DiscordBot
 # A Discord bot that was started in early 2017 to test out Python. Worked on many years in the Repl.it web-based IDE. Now updated to work in the current year.
-NOTE:
-Discord has been updated with multiple "breaking changes" since I last estensively worked on this bot, which run deep in the code. I am currently updating the code to get it back to working condition.
 
-CURRENT STATUS:
-- Able to run, but no commands execute.
-- Needs to fix status changing loop, as the previous process was deprecated.
+NOTE: Due to an unknown cause, the way in which the bot imports libraries randomly changed without user editing. The bot refuses to download the needed imports as of now. Worked through multiple possible solutions and none worked.
 
 Lots of credit goes to multiple discord users and friends that have greatly helped me on this project. Thank you for your help in this project.
 
