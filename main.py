@@ -1,6 +1,6 @@
-import os
+#import os
 
-os.system("python -m pip install -r requirements.txt")
+#os.system("python -m pip install -r requirements.txt")
 
 import discord
 from discord.ext import tasks, commands
@@ -30,7 +30,7 @@ print('-------------------------------------------')
 
 prefix = '='
 minescout_boards = []
-TOKEN = 'PUT TOKEN HERE'
+TOKEN = 'HIDDEN'
 client = Bot(command_prefix=prefix, intents=discord.Intents.all())
 client.remove_command('help')
 
